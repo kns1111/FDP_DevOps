@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'NUM1', defaultValue: '0', description: 'Enter first number')
+        string(name: 'NUM2', defaultValue: '0', description: 'Enter second number')
+    }
+
+    stages {
+        stage('Addition and Subtraction') {
+            steps {
+                script {
+                    // Parameters are strings by default
+                    int num1 = params.NUM1.toInteger()
+                    int num2 = params.NUM2.toInteger()
+
+                    int sum = num1 + num2
+                    int difference = num1 - num2
+
+                    echo "The sum of ${num1} and ${num2} is: ${sum}"
+                    echo "The difference of ${num1} and ${num2} is: ${difference}"
+                }
+            }
+        }
+    }
+}
